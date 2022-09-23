@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+</head>
+<body onload="runScript(); RunTest.test1()">
+<h1>Arrays</h1>
+array values don't have to be of the same type
+<pre>
+<code class="language-javascript">
+const array = ["yes", true, 1];
+for (const value of array) {
+    console.log(typeof value)
+}
+// -> string, boolean, number
+</code>
+</pre>
+and have multiple ways of getting these values. the values are indexed by numbers, starting at 0
+<pre>
+<code class="language-javascript">
+const array = ["yes", true, 1];
+console.log(array[0])
+// -> "yes"
+console.log(array[2])
+// -> 1
+// or by string representation of number
+console.log(array["1"])
+// -> true
+</code>
+</pre>
+you can loop through them in many ways, more common ones are
+<pre>
+<code class="language-javascript">
+// for loop
+const array = ["a", "b", "c"]
+for (let i = 0; i < array.length; i++) {
+    console.log(`${i}: ${array[i]}`)
+}
+</code>
+</pre>
+<pre>
+<code class="language-javascript">
+// for-of loop
+const array = ["a", "b", "c"]
+let i = 0
+for (const value of array) {
+    console.log(`${i++}: ${value}`)
+}
+</code>
+</pre>
+or if you want to make it especially hard for yourself, use the array iterator
+<pre>
+<code class="language-javascript">
+const array = ["a", "b", "c"]
+const iterator = array.keys()
+let next = iterator.next();
+while (!next.done) {
+    console.log(`${next.value}: ${array[next.value]}`)
+    next = iterator.next()
+}
+</code>
+</pre>
+
+<h3>Your Task:</h3>
+<span>edit the script block of this file so a food array is created</span><br>
+<h3>Food:</h3>
+<div class="foods"></div>
+<pre class="error"></pre>
+
+<script type="application/javascript">
+    function addFood(value) {
+        const p = document.createElement("pre")
+        p.textContent = !!value? value : "undefined"
+        document.getElementsByClassName("foods")[0].append(p)
+    }
+
+    const runScript = () => {
+        const foods = ["apple", "banana", "peach"]
+        for (let i = -1; i < [,,,]; i++) {
+            addFood(foods[i]);
+        }
+    };
+</script>
+<script src="test.js"></script>
+
+<div id="displayOnSuccess" hidden="hidden">
+    <a href="./object1.html">next exercise</a>
+</div>
+
+<!-- fancy code highlighting -->
+<script>hljs.highlightAll();</script>
+</body>
+</html>

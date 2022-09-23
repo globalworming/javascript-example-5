@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objetcs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+</head>
+<body onload="runScript(); RunTest.test2()">
+<h1>Objects</h1>
+Arrays are objects. Objects have String properties, Arrays are pretty much limited to Strings of positive integers
+<pre>
+<code class="language-javascript">
+const array = ["first value"];
+console.log(typeof array)
+// -> object
+array["1"] = "second value"
+const object = {"a property": "a value"}
+object.anotherProperty = "another value"
+console.log(object)
+// -> {a property: 'a value', anotherProperty: 'another value'}
+</code>
+</pre>
+in comparison to arrays, objects aren't really built for iteration over their properties, you can do it though if need be. use for-in loop or get an array with key-value pairs
+<pre>
+<code class="language-javascript">
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
+}
+// -> a property: a value
+// -> anotherProperty: another value
+console.log(Object.entries(object))
+/* -> 0: ['a property', 'a value']
+      1: ['anotherProperty', 'another value'] */
+</code>
+</pre>
+Objects are for tracking different things with properties. values can be anything, other objects, functions, ... <br>
+We haven't talked about functions yet or what 'this' is. Functions are resuable code blocks, 'this' here referring to the object
+<pre>
+<code class="language-javascript">
+const human = {
+    heads: 1,
+    behead: function () {
+        this.heads = 0
+    }
+}
+const hydra = {
+    heads: 1,
+    behead: function () {
+        this.heads++
+    }
+}
+</code>
+</pre>
+
+<h3>Your Task:</h3>
+<span>edit the script block of this file so the pizza is correct</span><br>
+<h3>Pizza:</h3>
+<div class="pizza"></div>
+<pre class="error"></pre>
+
+<script type="application/javascript">
+    const pizza = {
+        name: "vegetaria",
+        slices: 4
+    }
+    pizza.size = "small"
+
+    const runScript = () => {
+        const entries = Object.entries(pizza);
+        for (const entry of entries) {
+            const p = document.createElement("p")
+            const key = document.createElement("b")
+            key.className = "key-"+ entry[0]
+            key.textContent = entry[0]
+            const value = document.createElement("span")
+            value.className = "value-" + entry[0]
+            value.textContent = entry[1]
+            p.append(key,": ",  value)
+            document.getElementsByClassName("pizza")[0].append(p)
+        }
+    };
+</script>
+<script src="test.js"></script>
+
+<div id="displayOnSuccess" hidden="hidden">
+    <a href="./next">FIXME next classroom</a>
+</div>
+
+<!-- fancy code highlighting -->
+<script>hljs.highlightAll();</script>
+</body>
+</html>

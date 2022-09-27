@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+</head>
+<body onload="runScript(); RunTest.test2()">
+<h1>Maps</h1>
+Maps makes building relationships between objects easier
+<pre>
+<code class="language-javascript">
+const atom = {"name": "atom"};
+const thunder = {"name": "thunder"};
+const antimatter = {"name": "antimatter", evil: true };
+const lightning = {"name": "lightning", evil: true };
+
+const heroesToArchEnemy = new Map();
+heroesToArchEnemy.set(atom, antimatter);
+heroesToArchEnemy.set(thunder, lightning);
+heroesToArchEnemy // -> Entries:
+    //  0: {Object => Object} key: {name: 'atom'} value: {name: 'antimatter', evil: true}
+    //  1: {Object => Object} key: {name: 'thunder'} value: {name: 'lightning', evil: true}
+</code>
+</pre>
+
+
+<h3>Your Task:</h3>
+<span>edit the script block of this file so a food array is created</span><br>
+<h3>Powers:</h3>
+<div class="powers"></div>
+<pre class="error"></pre>
+
+<script type="application/javascript">
+
+    const runScript = () => {
+        // persons
+        const atom = {"name": "atom"};
+        const thunder = {"name": "thunder"};
+        const antimatter = {"name": "antimatter" };
+        const lightning = {"name": "lightning" };
+
+        // organisations
+        const gdi = {"orgName": "GDI"}
+        const nod = {"orgName": "NOD"}
+        const fid = {"orgName": "FID"}
+
+        // mapping
+        const organisationToMembers = new Map([
+            [gdi, [atom, lightning]]
+        ])
+        organisationToMembers.set(fid, [antimatter, lightning])
+
+        // print
+        renderOrganisations(organisationToMembers);
+    };
+
+    function renderOrganisations(organisationToMembers) {
+        for (const entry of organisationToMembers.entries()) {
+            const showsOrganisation = document.createElement("p")
+            showsOrganisation.className = "organisation-" + entry[0].orgName
+            showsOrganisation.textContent = entry[0].orgName + ": " + entry[1].map(it => it.name).join(", ")
+            document.getElementsByClassName("powers")[0].append(showsOrganisation)
+        }
+        const showsNumberOfUniquePersons = document.createElement("b")
+        let uniquePersons = new Set([...organisationToMembers.values()].flat());
+        showsNumberOfUniquePersons.textContent = "total members: " + uniquePersons.size
+        document.getElementsByClassName("powers")[0].append(showsNumberOfUniquePersons)
+    }
+</script>
+<script src="test.js"></script>
+
+<div id="displayOnSuccess" hidden="hidden">
+    <a href="./2.html">next exercise</a>
+</div>
+
+<!-- fancy code highlighting -->
+<script>hljs.highlightAll();</script>
+</body>
+</html>

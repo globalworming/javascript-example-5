@@ -1,4 +1,4 @@
-const RunTest =  {
+const RunTest = {
     test1() {
         setTimeout(() => {
             try {
@@ -26,26 +26,22 @@ const RunTest =  {
     test2() {
         setTimeout(() => {
             try {
-                if (document.getElementsByClassName("value-size")[0].textContent !== "big") {
-                    document.getElementsByClassName("error")[0].textContent = `test failed, i'd like to have a "big" pizza`
+                let showsOrganisationFid = document.getElementsByClassName("organisation-nod");
+                if (showsOrganisationFid.length === 0) {
+                    document.getElementsByClassName("error")[0].textContent = `test failed, expected "thunder" to be member of "FID"`
                     return
                 }
-                if (document.getElementsByClassName("value-slices")[0].textContent !== "8") {
-                    document.getElementsByClassName("error")[0].textContent = `test failed, i'd like to have a "8" slices`
-                    return
-                }
+                let textContent = showsOrganisationFid[0].textContent;
 
+                if (!textContent.includes("thunder")) {
+                    document.getElementsByClassName("error")[0].textContent = `test failed, expected "thunder" to be member of "FID"`
+                    return
+                }
                 document.getElementById("displayOnSuccess").hidden = false
             } catch (e) {
                 document.getElementsByClassName("error")[0].textContent = e.message + "\n\n" + e.stack
                 throw e
             }
-        }, 1000)
-    },
-
-    delayedShow() {
-        setTimeout(() => {
-            document.getElementById("displayOnSuccess").hidden = false
         }, 1000)
     }
 }

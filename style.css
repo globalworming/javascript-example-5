@@ -47,6 +47,12 @@ body {
 
 }
 
+.organisation {
+    max-width: 300px;
+    border-left: 3px solid #093f4fDD;
+    border-bottom: 1px solid #093f4fDD;
+    padding: 10px;
+}
 
 @keyframes shake {
     0% {

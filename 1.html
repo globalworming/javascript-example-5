@@ -9,28 +9,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
 </head>
 <body onload="runScript(); RunTest.test2()">
-<h1>Maps</h1>
-Maps makes building relationships between objects easier
+<h1>Maps vs Objects</h1>
+some prefer the Map API (get, set, has, delete) to dealing with object properties. One big disadvantage though: Maps are harder to print as and parse from JSON.
 <pre>
 <code class="language-javascript">
-const atom = {"name": "atom"};
-const thunder = {"name": "thunder"};
+// parsing objects, no problem
+const atom = JSON.parse('{"name": "atom"}');
 const antimatter = {"name": "antimatter", evil: true };
-const lightning = {"name": "lightning", evil: true };
 
-const heroesToArchEnemy = new Map();
-heroesToArchEnemy.set(atom, antimatter);
-heroesToArchEnemy.set(thunder, lightning);
-heroesToArchEnemy // -> Entries:
-    //  0: {Object => Object} key: {name: 'atom'} value: {name: 'antimatter', evil: true}
-    //  1: {Object => Object} key: {name: 'thunder'} value: {name: 'lightning', evil: true}
+const heroesToArchEnemy = new Map([[atom, antimatter]]);
+// Map to JSON prints empty object
+JSON.stringify(heroesToArchEnemy) // -> {}
+JSON.parse('{{"name": "atom"}: {"name": "antimatter"}}'); // invalid JSON
 </code>
 </pre>
-
+there are workarounds, check stackoverflow :)
 
 <h3>Your Task:</h3>
-<span>edit the script block of this file so a food array is created</span><br>
-<h3>Powers:</h3>
+<span>edit the script block of this file to add an entry to the map:</span><br>
+<h2>Global Evil Organisation Database:</h2>
 <div class="powers"></div>
 <pre class="error"></pre>
 
@@ -60,14 +57,16 @@ heroesToArchEnemy // -> Entries:
 
     function renderOrganisations(organisationToMembers) {
         for (const entry of organisationToMembers.entries()) {
+            let organisation = entry[0];
+            let members = entry[1];
             const showsOrganisation = document.createElement("p")
-            showsOrganisation.className = "organisation-" + entry[0].orgName
-            showsOrganisation.textContent = entry[0].orgName + ": " + entry[1].map(it => it.name).join(", ")
+            showsOrganisation.className = "organisation organisation-" + organisation.orgName
+            showsOrganisation.textContent = organisation.orgName + ": " + members.map(it => it.name).join(", ")
             document.getElementsByClassName("powers")[0].append(showsOrganisation)
         }
         const showsNumberOfUniquePersons = document.createElement("b")
         let uniquePersons = new Set([...organisationToMembers.values()].flat());
-        showsNumberOfUniquePersons.textContent = "total members: " + uniquePersons.size
+        showsNumberOfUniquePersons.textContent = "members (" + uniquePersons.size + "): " + [...uniquePersons].map(it => it.name).sort().join(", ")
         document.getElementsByClassName("powers")[0].append(showsNumberOfUniquePersons)
     }
 </script>

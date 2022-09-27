@@ -26,15 +26,15 @@ const RunTest = {
     test2() {
         setTimeout(() => {
             try {
-                let showsOrganisationFid = document.getElementsByClassName("organisation-nod");
+                let showsOrganisationFid = document.getElementsByClassName("organisation-NOD");
                 if (showsOrganisationFid.length === 0) {
-                    document.getElementsByClassName("error")[0].textContent = `test failed, expected "thunder" to be member of "FID"`
+                    document.getElementsByClassName("error")[0].textContent = `test failed, expected "thunder" to be member of "NOD"`
                     return
                 }
                 let textContent = showsOrganisationFid[0].textContent;
 
                 if (!textContent.includes("thunder")) {
-                    document.getElementsByClassName("error")[0].textContent = `test failed, expected "thunder" to be member of "FID"`
+                    document.getElementsByClassName("error")[0].textContent = `test failed, expected "thunder" to be member of "NOD"`
                     return
                 }
                 document.getElementById("displayOnSuccess").hidden = false

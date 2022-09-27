@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+</head>
+<body onload="runScript(); RunTest.test2()">
+<h1>Maps vs Objects</h1>
+some prefer the Map API (get, set, has, delete) to dealing with object properties. One big disadvantage though: Maps are harder to print as and parse from JSON.
+<pre>
+<code class="language-javascript">
+// parsing objects, no problem
+const atom = JSON.parse('{"name": "atom"}');
+const antimatter = {"name": "antimatter", evil: true };
+
+const heroesToArchEnemy = new Map([[atom, antimatter]]);
+// Map to JSON prints empty object
+JSON.stringify(heroesToArchEnemy) // -> {}
+JSON.parse('{{"name": "atom"}: {"name": "antimatter"}}'); // invalid JSON
+</code>
+</pre>
+there are workarounds, check stackoverflow :)
+
+<div id="displayOnSuccess">
+    <a href="./3.html">next exercise</a>
+</div>
+
+<!-- fancy code highlighting -->
+<script>hljs.highlightAll();</script>
+</body>
+</html>

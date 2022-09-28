@@ -47,7 +47,7 @@ findHero(powerLevel)
 
 <h3>Your Task:</h3>
 <span>edit the script block of this file to create the necessary functions</span><br>
-<h2>Global Evil Organisation Database:</h2>
+<h2>Global Evil Organisation Database: Hero "Thunder"</h2>
 <div><h3>
     your options:
 </h3>
@@ -65,7 +65,6 @@ findHero(powerLevel)
         console.log("calling " + hero.name)
     }
 
-
     const notifyAuthorities = undefined // FIXME
 
     const runScript = () => {
@@ -74,22 +73,21 @@ findHero(powerLevel)
             notifyAuthorities,
             sendOnVacation,
         }
-        const selectedHero = {name: "thunder"}
-        renderFeatures(features, selectedHero);
+        renderFeatures(features);
     };
 
-    function renderFeatures(features, selectedHero) {
+    function renderFeatures(features) {
         const showsFeatures = document.getElementsByClassName("features")[0];
         for (const feature in features) {
             console.log(feature)
             const showsFeature = document.createElement("li")
             showsFeature.textContent = feature
-            let invokeFeature = features[feature];
-            if (typeof invokeFeature !== 'function') {
+            let invokeFeatureWithHero = features[feature];
+            if (typeof invokeFeatureWithHero !== 'function') {
                 // continue skips this execution of the loop
                 continue
             }
-            showsFeature.onclick = () => invokeFeature(selectedHero)
+            showsFeature.onclick = () => invokeFeatureWithHero({name: "Thunder"})
             showsFeatures.append(showsFeature)
         }
     }
@@ -98,7 +96,7 @@ findHero(powerLevel)
 <script src="test.js"></script>
 
 <div id="displayOnSuccess" hidden="hidden">
-    <a href="./2.html">next exercise</a>
+    <a href="./todo">FIXME next classroom</a>
 </div>
 
 <!-- fancy code highlighting -->

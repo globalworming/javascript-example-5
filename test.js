@@ -51,7 +51,7 @@ const RunTest = {
                     .map(element => element.textContent)
                     .join(", ");
                 if (!features.includes("notifyAuthorities")) {
-                    document.getElementsByClassName("error")[0].textContent = `missing feature. define a function that can ba called by "notifyAuthorities()"`
+                    document.getElementsByClassName("error")[0].textContent = `missing feature. define a function that can be called by "notifyAuthorities()"`
                     return
                 }
                 document.getElementById("displayOnSuccess").hidden = false

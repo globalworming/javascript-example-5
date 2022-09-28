@@ -43,5 +43,22 @@ const RunTest = {
                 throw e
             }
         }, 1000)
+    },
+    test3() {
+        setTimeout(() => {
+            try {
+                let features = [...document.querySelectorAll(".features li").values()]
+                    .map(element => element.textContent)
+                    .join(", ");
+                if (!features.includes("notifyAuthorities")) {
+                    document.getElementsByClassName("error")[0].textContent = `missing feature. define a function that can ba called by "notifyAuthorities()"`
+                    return
+                }
+                document.getElementById("displayOnSuccess").hidden = false
+            } catch (e) {
+                document.getElementsByClassName("error")[0].textContent = e.message + "\n\n" + e.stack
+                throw e
+            }
+        }, 1000)
     }
 }
